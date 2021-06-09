@@ -35,13 +35,6 @@
       "content-type": "simulation"
     },
     {
-      "target": "assignment.html",
-      "source": "assignment.md",
-      "label": "Assignment",
-      "unit-type": "task",
-      "content-type": "text"
-    },
-    {
       "target": "references.html",
       "source": "references.md",
       "label": "References",
