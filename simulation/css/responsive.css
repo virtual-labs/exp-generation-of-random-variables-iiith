@@ -1,0 +1,323 @@
+/* Responsive styles for Random Variables Generation Simulation */
+
+/* Large screens (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Medium screens (992px to 1199px) */
+@media (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* Small screens (768px to 991px) */
+@media (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .control-panel {
+        order: 2;
+    }
+
+    .visualization-area {
+        order: 1;
+        min-height: 400px;
+    }
+}
+
+/* Extra small screens (up to 767px) */
+@media (max-width: 767px) {
+    .container {
+        max-width: 540px;
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 1.5em;
+    }
+
+    .header p {
+        font-size: 1em;
+    }
+
+    .control-section h3 {
+        font-size: 1.1em;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .visualization-area {
+        min-height: 300px;
+    }
+}
+
+/* Mobile devices (up to 575px) */
+@media (max-width: 575px) {
+    .container {
+        padding: 5px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .control-panel,
+    .info-panel {
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .range-with-value {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .range-value {
+        text-align: left;
+        margin-top: 5px;
+    }
+}
+
+/* Print styles */
+@media print {
+  .app-header,
+  .control-section,
+  .canvas-controls,
+  .app-footer {
+    display: none;
+  }
+
+  .main-content {
+    padding: 0;
+  }
+
+  .visualization-section {
+    flex-direction: column;
+  }
+
+  .canvas-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .info-card {
+    box-shadow: none;
+    border: 1px solid #000;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .header p {
+        font-size: 0.9rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    .visualization-section {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .control-section {
+        width: 100%;
+    }
+
+    .control-group {
+        margin-bottom: 1rem;
+    }
+
+    .control-group label {
+        font-size: 0.9rem;
+    }
+
+    .control-group input[type="range"] {
+        width: 100%;
+    }
+
+    .control-group input[type="number"] {
+        width: 60px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+
+    .info-panel {
+        padding: 0.75rem;
+    }
+
+    .info-panel h3 {
+        font-size: 1rem;
+    }
+
+    .info-panel p {
+        font-size: 0.9rem;
+    }
+
+    .status-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .status-label {
+        font-size: 0.9rem;
+    }
+
+    .status-value {
+        font-size: 0.9rem;
+    }
+
+    /* Fix for How to Use overlay on small screens */
+    .overlay {
+        padding: 1rem;
+    }
+
+    .overlay-content {
+        max-width: 100%;
+        max-height: 90vh;
+        margin: 1rem;
+        padding: 1.5rem;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .overlay-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        position: sticky;
+        top: 0;
+        background: var(--bg-color);
+        padding: 0.5rem 0;
+        z-index: 1;
+    }
+
+    .instructions-section {
+        margin-top: 1rem;
+    }
+
+    .instructions-section h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .instructions-section ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .instructions-section li {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .instructions-section .start-btn {
+        position: sticky;
+        bottom: 0;
+        background: var(--bg-color);
+        padding: 1rem 0;
+        margin-top: 1rem;
+        z-index: 1;
+        width: 100%;
+    }
+
+    .instructions-section .start-btn button {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    /* Ensure canvas container and visualization canvas remain unchanged */
+    .canvas-container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        background: var(--bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .visualization-canvas {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media screen and (max-width: 480px) {
+    .header h1 {
+        font-size: 1.2rem;
+    }
+
+    .header p {
+        font-size: 0.8rem;
+    }
+
+    .overlay-content {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+
+    .overlay-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .instructions-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .instructions-section li {
+        font-size: 0.85rem;
+    }
+
+    .instructions-section .start-btn button {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+} 

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Random Variables Generation Simulation</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+	<div class="app-container">
+		<header class="app-header">
+			<div class="header-content">
+				<h1>Random Variables Generation</h1>
+				<p class="header-description">Interactive visualization tool for understanding probability distributions</p>
+			</div>
+		</header>
+
+		<main class="main-content">
+			<section class="visualization-section">
+				<div class="canvas-container">
+					<canvas id="visualization-canvas"></canvas>
+					<div class="canvas-controls">
+						<button id="zoom-in" class="btn btn-icon" title="Zoom In">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
+						</button>
+						<button id="zoom-out" class="btn btn-icon" title="Zoom Out">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M5 11h14v2H5z"/></svg>
+						</button>
+						<button id="reset-view" class="btn btn-icon" title="Reset View">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.537 19.567A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 2.136-.67 4.116-1.81 5.74L17 12h3a8 8 0 1 0-2.46 5.772l.997 1.795z"/></svg>
+						</button>
+					</div>
+				</div>
+
+				<div class="info-panel">
+					<div class="info-card">
+						<h3 class="card-title">Simulation Status</h3>
+						<div class="status-content">
+							<div class="status-item">
+								<span class="status-label">Distribution:</span>
+								<span id="distribution-type" class="status-value">Not selected</span>
+							</div>
+							<div class="status-item">
+								<span class="status-label">Sample Size:</span>
+								<span id="sample-size-status" class="status-value">0</span>
+							</div>
+							<div class="status-item">
+								<span class="status-label">Status:</span>
+								<span id="generation-status" class="status-value status-waiting">Not started</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="info-card">
+						<h3 class="card-title">Statistics</h3>
+						<div class="metrics-content">
+							<div class="metric-item">
+								<span class="metric-label">Mean:</span>
+								<span id="mean-value" class="metric-value">-</span>
+							</div>
+							<div class="metric-item">
+								<span class="metric-label">Standard Deviation:</span>
+								<span id="std-dev-value" class="metric-value">-</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="control-section">
+				<div class="control-panel">
+					<div class="panel-section">
+						<h3 class="section-title">Distribution Selection</h3>
+						<div class="section-content">
+							<div class="form-group">
+								<label for="distribution-type-select">Select Distribution:</label>
+								<select id="distribution-type-select" class="form-control">
+									<option value="">Choose a distribution...</option>
+									<option value="uniform">Uniform</option>
+									<option value="normal">Normal (Gaussian)</option>
+									<option value="exponential">Exponential</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel-section">
+						<h3 class="section-title">Parameters</h3>
+						<div id="distribution-parameters" class="section-content">
+							<!-- Parameters will be dynamically added here -->
+						</div>
+					</div>
+
+					<div class="panel-section">
+						<h3 class="section-title">Sample Size</h3>
+						<div class="section-content">
+							<div class="form-group">
+								<label for="sample-size-input">Number of Points:</label>
+								<div class="range-with-value">
+									<input type="range" id="sample-size-input" min="100" max="1000" step="100" value="500" class="form-range">
+									<span id="sample-size-display" class="range-value">500</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel-section">
+						<h3 class="section-title">Simulation Controls</h3>
+						<div class="section-content">
+							<div class="form-group button-group">
+								<button id="generate-btn" class="btn btn-primary">Generate</button>
+								<button id="animate-btn" class="btn btn-success">Animate</button>
+								<button id="reset-btn" class="btn btn-secondary">Reset</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div id="notification-container" class="notification-container"></div>
+
+		<footer class="app-footer">
+			<div class="footer-content">
+				<p class="copyright">© 2024 Random Variables Generation Simulation</p>
+				<p class="attribution">Created for educational purposes</p>
+			</div>
+		</footer>
+	</div>
+
+	<div class="canvas-overlay" id="canvas-overlay">
+		<div class="overlay-content">
+			<h3>Welcome to Random Variables Generation</h3>
+			<p>This tool helps you understand different probability distributions through interactive visualization.</p>
+			
+			<div class="instructions-section">
+				<h4>How to Use:</h4>
+				<ol>
+					<li><strong>Select a Distribution:</strong>
+						<ul>
+							<li>Choose from Uniform, Normal, or Exponential distributions</li>
+							<li>Each distribution has unique characteristics and parameters</li>
+						</ul>
+					</li>
+					<li><strong>Adjust Parameters:</strong>
+						<ul>
+							<li>Uniform: Set minimum and maximum values</li>
+							<li>Normal: Set mean (center) and standard deviation (spread)</li>
+							<li>Exponential: Set rate parameter (λ)</li>
+						</ul>
+					</li>
+					<li><strong>Generate Data:</strong>
+						<ul>
+							<li>Set sample size (100-1000 points)</li>
+							<li>Click "Generate" to create new random numbers</li>
+							<li>Use "Animate" to see the distribution evolve over time</li>
+						</ul>
+					</li>
+					<li><strong>Analyze Results:</strong>
+						<ul>
+							<li>Observe the histogram of generated data</li>
+							<li>Compare with the theoretical probability density function (PDF)</li>
+							<li>Check the mean and standard deviation in the statistics panel</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+			
+			<button class="btn btn-primary" onclick="document.getElementById('canvas-overlay').style.display='none'">
+				Start Experiment
+			</button>
+		</div>
+	</div>
+
+	<script src="js/main.js"></script>
+	<script src="js/responsive.js"></script>
+<script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>
